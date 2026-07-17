@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 660" width="620" height="660" role="img" aria-label="Mapa de puntos estratégicos — placeholder">
+  <rect width="620" height="660" fill="#E8E6E4"/>
+  <g stroke="#C9C7C4" stroke-width="1.4" fill="none">
+    <path d="M40 120 C 200 90, 320 220, 500 180"/>
+    <path d="M80 380 C 220 340, 360 460, 560 420"/>
+    <path d="M120 60 L200 300 L160 560"/>
+    <path d="M420 80 L360 340 L480 600"/>
+    <path d="M40 260 L580 300"/>
+  </g>
+  <g fill="#0A0A0A">
+    <circle cx="200" cy="300" r="7"/>
+    <circle cx="360" cy="340" r="7"/>
+    <circle cx="160" cy="180" r="5"/>
+    <circle cx="480" cy="220" r="5"/>
+    <circle cx="300" cy="480" r="5"/>
+    <circle cx="500" cy="500" r="5"/>
+  </g>
+  <g fill="#4EBFE0">
+    <circle cx="310" cy="330" r="11"/>
+  </g>
+  <circle cx="310" cy="330" r="20" fill="none" stroke="#4EBFE0" stroke-width="2" stroke-opacity="0.5"/>
+  <text x="34" y="50" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="12" letter-spacing="2" fill="#0A0A0A" fill-opacity="0.4">MAPA · map-infografia.png</text>
+</svg>

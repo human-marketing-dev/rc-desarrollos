@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" width="640" height="480" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Render de acceso — placeholder">
+  <defs>
+    <linearGradient id="eg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0A0A0A"/>
+      <stop offset="1" stop-color="#22505e"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="480" fill="url(#eg)"/>
+  <g stroke="#4EBFE0" stroke-opacity="0.45" fill="none" stroke-width="1.6">
+    <path d="M120 380 L120 200 L360 150 L360 340 Z"/>
+    <path d="M360 150 L520 190 L520 360 L360 340"/>
+    <path d="M120 200 L360 150"/>
+    <path d="M160 380 L160 250 L320 215 L320 350"/>
+  </g>
+  <g stroke="#fff" stroke-opacity="0.1" stroke-width="1">
+    <path d="M0 400 L640 400"/>
+    <path d="M0 430 L640 430"/>
+  </g>
+  <text x="34" y="56" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="12" letter-spacing="2" fill="#fff" fill-opacity="0.45">RENDER · render-entrance.png</text>
+</svg>
