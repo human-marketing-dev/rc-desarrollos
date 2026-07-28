@@ -15,7 +15,7 @@ const ASSETS = {
   hero: "/assets/hero-park.svg", // real: /assets/hero-park.jpg
   renderAerial: "/assets/render-aerial.svg", // real: /assets/render-aerial.png
   renderEntrance: "/assets/render-entrance.svg", // real: /assets/render-entrance.png
-  map: "/assets/map-infografia.svg", // real: /assets/map-infografia.png
+  map: "/mapa-rc-parks.webp",
 };
 
 const CYAN = "#4EBFE0";
@@ -112,15 +112,12 @@ const LOC_DEFS: { key: LocKey; label: string }[] = [
 
 const LOC_DATA: Record<LocKey, { num: string; name: string; km: string }[]> = {
   empresas: [
-    { num: "01", name: "Tesla", km: "48 km" },
-    { num: "02", name: "Nemak", km: "40 km" },
-    { num: "03", name: "John Deere", km: "39 km" },
-    { num: "04", name: "Caterpillar", km: "38 km" },
-    { num: "05", name: "Kia Plant", km: "25 km" },
-    { num: "06", name: "Ternium Pesquería", km: "26 km" },
-    { num: "07", name: "Ternium Planos", km: "24 km" },
-    { num: "08", name: "Ternium Largos", km: "19 km" },
-    { num: "09", name: "Frisa", km: "40 km" },
+    { num: "01", name: "Lego", km: "14.6 km" },
+    { num: "02", name: "Volvo", km: "5.2 km" },
+    { num: "03", name: "Ternium Pesquería", km: "26 km" },
+    { num: "04", name: "Ternium Planos", km: "24 km" },
+    { num: "05", name: "Ternium Largos", km: "19 km" },
+    { num: "06", name: "Kia Plant", km: "25 km" },
   ],
   aeropuertos: [
     { num: "", name: "Aeropuerto Int. del Norte", km: "18 km" },
@@ -183,7 +180,7 @@ const AMENITIES = [
 
 const FRONTERAS = [
   { name: "Puente Colombia", km: "230 km" },
-  { name: "Nuevo Laredo", km: "190 km" },
+  { name: "Pharr, Texas", km: "190 km" },
   { name: "Reynosa", km: "232 km" },
 ];
 
@@ -212,8 +209,6 @@ export default function Page() {
   const [unit, setUnit] = useState<UnitKey>("parks");
   const [dev, setDev] = useState<DevKey>("cienega");
   const [locTab, setLocTab] = useState<LocKey>("empresas");
-  const [submitted, setSubmitted] = useState(false);
-  const [sentName, setSentName] = useState("");
 
   // Scroll-reveal: fade+rise elements marked [data-reveal] as they enter view.
   // Re-runs when panel content changes so newly mounted nodes get observed.
@@ -247,7 +242,7 @@ export default function Page() {
       io.observe(el);
     });
     return () => io.disconnect();
-  }, [unit, dev, locTab, submitted]);
+  }, [unit, dev, locTab]);
 
   const isParks = unit === "parks";
   const isBuilt = unit === "built";
@@ -256,15 +251,6 @@ export default function Page() {
   const activeDev = DEV_DEFS.find((d) => d.key === dev) ?? DEV_DEFS[0];
   const isCienega = dev === "cienega";
   const isUpcomingDev = dev !== "cienega";
-
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const fd = new FormData(e.currentTarget);
-    const name =
-      (fd.get("nombre") || "").toString().trim().split(" ")[0] || "";
-    setSubmitted(true);
-    setSentName(name);
-  };
 
   return (
     <div style={{ minHeight: "100vh", overflowX: "hidden" }}>
@@ -1577,97 +1563,8 @@ export default function Page() {
         </div>
       </section>
 
-      {/* BIG PHRASE */}
-      <section
-        style={{
-          background: INK,
-          color: "#fff",
-          padding: "130px 0",
-          overflow: "hidden",
-          position: "relative",
-        }}
-      >
-        <span
-          style={{
-            position: "absolute",
-            top: -50,
-            right: -10,
-            fontSize: 260,
-            fontWeight: 500,
-            lineHeight: 1,
-            color: "rgba(78,191,224,0.1)",
-            letterSpacing: -12,
-            pointerEvents: "none",
-          }}
-        >
-          R.C.
-        </span>
-        <div
-          style={{
-            maxWidth: 1400,
-            margin: "0 auto",
-            padding: "0 40px",
-            position: "relative",
-          }}
-        >
-          <div
-            data-reveal="true"
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 13,
-              marginBottom: 30,
-            }}
-          >
-            <span style={{ width: 34, height: 1, background: CYAN }} />
-            <span
-              style={{
-                fontSize: 12.5,
-                letterSpacing: 3,
-                textTransform: "uppercase",
-                color: CYAN,
-                fontWeight: 500,
-              }}
-            >
-              Nuestra visión
-            </span>
-          </div>
-          <h2
-            data-reveal="true"
-            data-delay="80"
-            style={{
-              fontSize: 62,
-              lineHeight: 1.03,
-              fontWeight: 500,
-              letterSpacing: -2.6,
-              maxWidth: 1120,
-              textWrap: "balance",
-            }}
-          >
-            &ldquo;Tenemos una visión de futuro: ser el referente del sector
-            industrial.&rdquo;
-          </h2>
-          <p
-            data-reveal="true"
-            data-delay="160"
-            style={{
-              marginTop: 30,
-              fontSize: 21,
-              lineHeight: 1.5,
-              color: "rgba(255,255,255,0.68)",
-              maxWidth: 700,
-              textWrap: "pretty",
-            }}
-          >
-            Conectamos negocios con soluciones de infraestructura de clase
-            mundial, generando un impacto positivo en el desarrollo económico y
-            social de la región.
-          </p>
-        </div>
-      </section>
-
       {/* CONTACTO */}
-      <section id="contacto" style={{ background: "#fff", padding: "130px 0" }}>
+      <section id="contacto" style={{ background: "#000", padding: "130px 0" }}>
         <div
           style={{
             maxWidth: 1400,
@@ -1697,6 +1594,7 @@ export default function Page() {
                 lineHeight: 1.04,
                 fontWeight: 500,
                 letterSpacing: -2,
+                color: "#fff",
                 textWrap: "balance",
               }}
             >
@@ -1707,7 +1605,7 @@ export default function Page() {
                 marginTop: 26,
                 fontSize: 19,
                 lineHeight: 1.6,
-                color: "rgba(10,10,10,0.65)",
+                color: "rgba(255,255,255,0.65)",
                 maxWidth: 440,
                 textWrap: "pretty",
               }}
@@ -1750,7 +1648,7 @@ export default function Page() {
                 <span
                   style={{
                     fontSize: 16,
-                    color: "rgba(10,10,10,0.7)",
+                    color: "rgba(255,255,255,0.7)",
                     lineHeight: 1.45,
                   }}
                 >
@@ -1762,146 +1660,7 @@ export default function Page() {
             </div>
           </div>
 
-          <div
-            data-reveal="true"
-            data-delay="100"
-            style={{
-              background: INK,
-              color: "#fff",
-              padding: 48,
-              borderRadius: 4,
-            }}
-          >
-            {submitted ? (
-              <div
-                style={{
-                  minHeight: 440,
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "flex-start",
-                  gap: 16,
-                }}
-              >
-                <span
-                  style={{
-                    width: 48,
-                    height: 48,
-                    borderRadius: "50%",
-                    background: CYAN,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    color: INK,
-                    fontSize: 24,
-                    fontWeight: 500,
-                  }}
-                >
-                  ✓
-                </span>
-                <h3
-                  style={{
-                    fontSize: 28,
-                    fontWeight: 500,
-                    letterSpacing: -0.6,
-                  }}
-                >
-                  ¡Gracias{sentName ? `, ${sentName}` : ""}!
-                </h3>
-                <p
-                  style={{
-                    fontSize: 16,
-                    color: "rgba(255,255,255,0.68)",
-                    lineHeight: 1.55,
-                  }}
-                >
-                  Hemos recibido tu solicitud. Un asesor de R.C. Desarrollos te
-                  contactará muy pronto.
-                </p>
-              </div>
-            ) : (
-              <form
-                onSubmit={onSubmit}
-                style={{ display: "flex", flexDirection: "column", gap: 22 }}
-              >
-                <div style={fieldWrap}>
-                  <label style={fieldLabel}>Nombre completo</label>
-                  <input
-                    name="nombre"
-                    required
-                    placeholder="Tu nombre"
-                    className="field"
-                    style={fieldInput}
-                  />
-                </div>
-                <div style={fieldWrap}>
-                  <label style={fieldLabel}>Empresa</label>
-                  <input
-                    name="empresa"
-                    placeholder="Nombre de tu empresa"
-                    className="field"
-                    style={fieldInput}
-                  />
-                </div>
-                <div
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "1fr 1fr",
-                    gap: 22,
-                  }}
-                >
-                  <div style={fieldWrap}>
-                    <label style={fieldLabel}>Email</label>
-                    <input
-                      name="email"
-                      type="email"
-                      required
-                      placeholder="tu@email.com"
-                      className="field"
-                      style={fieldInput}
-                    />
-                  </div>
-                  <div style={fieldWrap}>
-                    <label style={fieldLabel}>Teléfono</label>
-                    <input
-                      name="telefono"
-                      placeholder="+52"
-                      className="field"
-                      style={fieldInput}
-                    />
-                  </div>
-                </div>
-                <div style={fieldWrap}>
-                  <label style={fieldLabel}>¿Qué espacio buscas?</label>
-                  <textarea
-                    name="mensaje"
-                    rows={3}
-                    placeholder="m² requeridos, energía, fechas..."
-                    className="field"
-                    style={{ ...fieldInput, resize: "none" }}
-                  />
-                </div>
-                <button
-                  type="submit"
-                  className="btn-cyan"
-                  style={{
-                    marginTop: 10,
-                    background: CYAN,
-                    color: INK,
-                    border: "none",
-                    fontSize: 16,
-                    fontWeight: 500,
-                    padding: 17,
-                    borderRadius: 2,
-                    cursor: "pointer",
-                    fontFamily: "inherit",
-                  }}
-                >
-                  Enviar solicitud
-                </button>
-              </form>
-            )}
-          </div>
+          <LeadForm revealDelay={100} />
         </div>
       </section>
 
@@ -1988,6 +1747,158 @@ export default function Page() {
           © 2026 R.C. Desarrollos. Todos los derechos reservados.
         </div>
       </footer>
+    </div>
+  );
+}
+
+/* ---- reusable lead-capture form (dark panel) ---- */
+
+function LeadForm({ revealDelay }: { revealDelay?: number }) {
+  const [submitted, setSubmitted] = useState(false);
+  const [sentName, setSentName] = useState("");
+
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const fd = new FormData(e.currentTarget);
+    const name =
+      (fd.get("nombre") || "").toString().trim().split(" ")[0] || "";
+    setSubmitted(true);
+    setSentName(name);
+  };
+
+  const reveal =
+    revealDelay !== undefined
+      ? { "data-reveal": "true", "data-delay": String(revealDelay) }
+      : {};
+
+  return (
+    <div
+      {...reveal}
+      style={{ background: "#fff", color: INK, padding: 48, borderRadius: 4 }}
+    >
+      {submitted ? (
+        <div
+          style={{
+            minHeight: 440,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "flex-start",
+            gap: 16,
+          }}
+        >
+          <span
+            style={{
+              width: 48,
+              height: 48,
+              borderRadius: "50%",
+              background: CYAN,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: INK,
+              fontSize: 24,
+              fontWeight: 500,
+            }}
+          >
+            ✓
+          </span>
+          <h3 style={{ fontSize: 28, fontWeight: 500, letterSpacing: -0.6 }}>
+            ¡Gracias{sentName ? `, ${sentName}` : ""}!
+          </h3>
+          <p
+            style={{
+              fontSize: 16,
+              color: "rgba(10,10,10,0.6)",
+              lineHeight: 1.55,
+            }}
+          >
+            Hemos recibido tu solicitud. Un asesor de R.C. Desarrollos te
+            contactará muy pronto.
+          </p>
+        </div>
+      ) : (
+        <form
+          onSubmit={onSubmit}
+          style={{ display: "flex", flexDirection: "column", gap: 22 }}
+        >
+          <div style={fieldWrap}>
+            <label style={fieldLabel}>Nombre completo</label>
+            <input
+              name="nombre"
+              required
+              placeholder="Tu nombre"
+              className="field"
+              style={fieldInput}
+            />
+          </div>
+          <div style={fieldWrap}>
+            <label style={fieldLabel}>Empresa</label>
+            <input
+              name="empresa"
+              placeholder="Nombre de tu empresa"
+              className="field"
+              style={fieldInput}
+            />
+          </div>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gap: 22,
+            }}
+          >
+            <div style={fieldWrap}>
+              <label style={fieldLabel}>Email</label>
+              <input
+                name="email"
+                type="email"
+                required
+                placeholder="tu@email.com"
+                className="field"
+                style={fieldInput}
+              />
+            </div>
+            <div style={fieldWrap}>
+              <label style={fieldLabel}>Teléfono</label>
+              <input
+                name="telefono"
+                placeholder="+52"
+                className="field"
+                style={fieldInput}
+              />
+            </div>
+          </div>
+          <div style={fieldWrap}>
+            <label style={fieldLabel}>¿Qué espacio buscas?</label>
+            <textarea
+              name="mensaje"
+              rows={3}
+              placeholder="m² requeridos, energía, fechas..."
+              className="field"
+              style={{ ...fieldInput, resize: "none" }}
+            />
+          </div>
+          <button
+            type="submit"
+            className="btn-cyan"
+            style={{
+              marginTop: 10,
+              background: CYAN,
+              color: INK,
+              border: "none",
+              fontSize: 16,
+              fontWeight: 500,
+              padding: 17,
+              borderRadius: 2,
+              cursor: "pointer",
+              fontFamily: "inherit",
+            }}
+          >
+            Enviar solicitud
+          </button>
+        </form>
+      )}
     </div>
   );
 }
@@ -2118,7 +2029,7 @@ const proxLabel: React.CSSProperties = {
 
 const contactLink: React.CSSProperties = {
   textDecoration: "none",
-  color: INK,
+  color: "#fff",
   display: "flex",
   flexDirection: "column",
   gap: 5,
@@ -2128,7 +2039,7 @@ const contactLabel: React.CSSProperties = {
   fontSize: 12,
   letterSpacing: 1.5,
   textTransform: "uppercase",
-  color: "rgba(10,10,10,0.45)",
+  color: "rgba(255,255,255,0.45)",
 };
 
 const fieldWrap: React.CSSProperties = {
@@ -2140,14 +2051,14 @@ const fieldWrap: React.CSSProperties = {
 const fieldLabel: React.CSSProperties = {
   fontSize: 13,
   letterSpacing: 0.5,
-  color: "rgba(255,255,255,0.6)",
+  color: "rgba(10,10,10,0.55)",
 };
 
 const fieldInput: React.CSSProperties = {
   background: "transparent",
   border: "none",
-  borderBottom: "1px solid rgba(255,255,255,0.25)",
-  color: "#fff",
+  borderBottom: "1px solid rgba(10,10,10,0.2)",
+  color: INK,
   fontSize: 16,
   padding: "10px 0",
   outline: "none",
