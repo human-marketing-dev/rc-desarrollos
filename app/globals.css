@@ -118,3 +118,74 @@ body {
 .field:focus {
   border-bottom-color: #4ebfe0 !important;
 }
+
+/* --- Responsive --- */
+
+/* Tablet: stack two-column layouts and the hero. */
+@media (max-width: 1024px) {
+  .rc-hero {
+    grid-template-columns: 1fr !important;
+    min-height: 0 !important;
+  }
+  .rc-hero-pad {
+    padding: 40px 0 8px !important;
+  }
+  .rc-hero-media {
+    height: 340px !important;
+    margin: 0 0 8px !important;
+  }
+  .rc-2col {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+  }
+  .rc-h1 {
+    font-size: 56px !important;
+    letter-spacing: -2px !important;
+  }
+}
+
+/* Phone */
+@media (max-width: 768px) {
+  .rc-wrap {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+  .rc-sec {
+    padding-top: 76px !important;
+    padding-bottom: 76px !important;
+  }
+  .rc-nav-links {
+    display: none !important;
+  }
+  .rc-panel {
+    padding: 22px !important;
+  }
+  .rc-grid-3,
+  .rc-grid-4,
+  .rc-grid-5 {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .rc-h1 {
+    font-size: 42px !important;
+    letter-spacing: -1.5px !important;
+  }
+  .rc-h2 {
+    font-size: 32px !important;
+    letter-spacing: -1px !important;
+  }
+  .rc-hero-media {
+    height: 260px !important;
+  }
+}
+
+/* Small phone: single column for card grids. */
+@media (max-width: 520px) {
+  .rc-grid-3,
+  .rc-grid-4,
+  .rc-grid-5 {
+    grid-template-columns: 1fr !important;
+  }
+  .rc-h1 {
+    font-size: 36px !important;
+  }
+}

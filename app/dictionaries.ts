@@ -9,7 +9,7 @@ const es = {
     cta: "Solicitar espacio",
   },
   hero: {
-    eyebrow: "Desarrolladora Inmobiliaria · Noreste de México",
+    eyebrow: "Desarrolladora Inmobiliaria",
     titleBefore: "Desarrollamos el ",
     titleHighlight: "futuro",
     titleAfter: " industrial.",
@@ -209,7 +209,7 @@ const en: Content = {
     cta: "Request space",
   },
   hero: {
-    eyebrow: "Real Estate Developer · Northeast Mexico",
+    eyebrow: "Real Estate Developer",
     titleBefore: "We develop the industrial ",
     titleHighlight: "future",
     titleAfter: ".",
