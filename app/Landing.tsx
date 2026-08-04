@@ -71,12 +71,14 @@ const DEV_DEFS: {
   },
 ];
 
+// Dark gradients (black → RC Parks blue) for each "Próximamente" development.
 const UPCOMING_GRADIENTS: Record<DevKey, string> = {
-  cienega: "#FAFAF9",
-  pesqueria: "linear-gradient(135deg, #FFFFFF 0%, #CDE9F4 100%)",
-  santacatarina: "linear-gradient(135deg, #FFFFFF 0%, #E2DDF3 100%)",
-  juarez: "linear-gradient(135deg, #FFFFFF 0%, #F0E3D2 100%)",
-  suazua: "linear-gradient(135deg, #FFFFFF 0%, #D2EEDD 100%)",
+  cienega: "#0A0A0A",
+  pesqueria: "linear-gradient(140deg, #0A0A0A 0%, #0C2A34 48%, #2AA0C4 100%)",
+  santacatarina:
+    "linear-gradient(140deg, #0A0A0A 0%, #0E2440 48%, #2C6FB0 100%)",
+  juarez: "linear-gradient(140deg, #0A0A0A 0%, #0B2E38 48%, #1E88A8 100%)",
+  suazua: "linear-gradient(140deg, #0A0A0A 0%, #0C2C33 48%, #23A0A8 100%)",
 };
 
 const LOC_KEYS: LocKey[] = [
@@ -1074,7 +1076,7 @@ export default function Landing({ lang }: { lang: Lang }) {
                 {isUpcomingDev && (
                   <div
                     style={{
-                      border: "1px dashed #C9C7C4",
+                      border: "1px dashed rgba(255,255,255,0.18)",
                       borderRadius: 6,
                       padding: "80px 48px",
                       textAlign: "center",
@@ -1087,8 +1089,8 @@ export default function Landing({ lang }: { lang: Lang }) {
                         fontSize: 11.5,
                         letterSpacing: 2,
                         textTransform: "uppercase",
-                        color: INK,
-                        background: "#F1F0DA",
+                        color: CYAN,
+                        background: "rgba(78,191,224,0.15)",
                         padding: "7px 16px",
                         borderRadius: 100,
                         fontWeight: 500,
@@ -1102,6 +1104,7 @@ export default function Landing({ lang }: { lang: Lang }) {
                         fontSize: 36,
                         fontWeight: 500,
                         letterSpacing: -1.2,
+                        color: "#fff",
                       }}
                     >
                       RC Parks {activeDev.short}
@@ -1110,7 +1113,7 @@ export default function Landing({ lang }: { lang: Lang }) {
                       style={{
                         marginTop: 12,
                         fontSize: 17,
-                        color: "rgba(10,10,10,0.55)",
+                        color: "rgba(255,255,255,0.65)",
                       }}
                     >
                       {activeDev.loc}
@@ -1119,7 +1122,7 @@ export default function Landing({ lang }: { lang: Lang }) {
                       style={{
                         margin: "20px auto 0",
                         fontSize: 16,
-                        color: "rgba(10,10,10,0.5)",
+                        color: "rgba(255,255,255,0.6)",
                         maxWidth: 440,
                         lineHeight: 1.55,
                       }}
@@ -1132,8 +1135,8 @@ export default function Landing({ lang }: { lang: Lang }) {
                       style={{
                         display: "inline-block",
                         marginTop: 28,
-                        background: INK,
-                        color: "#fff",
+                        background: "#fff",
+                        color: INK,
                         textDecoration: "none",
                         fontSize: 15,
                         fontWeight: 500,
