@@ -12,9 +12,9 @@ import { useEffect, useState } from "react";
 const ASSETS = {
   logoHeader: "/assets/logo-header.svg", // real: /assets/logo-header.png
   logoSquare: "/assets/logo-square.svg", // real: /assets/logo-square.png
-  hero: "/assets/hero-park.svg", // real: /assets/hero-park.jpg
-  renderAerial: "/assets/render-aerial.svg", // real: /assets/render-aerial.png
-  renderEntrance: "/assets/render-entrance.svg", // real: /assets/render-entrance.png
+  hero: "/hero-rc-desarrollos.webp",
+  renderAerial: "/rc-parks-industrial.webp",
+  renderEntrance: "/rc-desarrollos-build-to-suit.webp",
   map: "/mapa-rc-parks.webp",
 };
 
@@ -25,18 +25,6 @@ const SAND = "#E8E6E4";
 type UnitKey = "parks" | "built" | "inmobiliario";
 type DevKey = "cienega" | "pesqueria" | "santacatarina" | "juarez" | "suazua";
 type LocKey = "empresas" | "aeropuertos" | "accesos" | "ferrocarriles";
-
-const MARQUEE_WORDS = [
-  "Triple A",
-  "Manufactura inteligente",
-  "Almacenamiento",
-  "4,500 KWa",
-  "Built to Suit",
-  "Bodegas de concreto",
-  "Logística",
-  "Ciénega de Flores",
-  "Monterrey · Texas",
-];
 
 const UNIT_DEFS: { key: UnitKey; name: string; tag: string; desc: string }[] = [
   {
@@ -62,6 +50,7 @@ const UNIT_DEFS: { key: UnitKey; name: string; tag: string; desc: string }[] = [
 const DEV_DEFS: {
   key: DevKey;
   short: string;
+  title: string;
   loc: string;
   status: string;
   upcoming: boolean;
@@ -69,13 +58,15 @@ const DEV_DEFS: {
   {
     key: "cienega",
     short: "Ciénega de Flores",
+    title: "RC Parks",
     loc: "Ciénega de Flores, N.L.",
-    status: "En desarrollo",
+    status: "",
     upcoming: false,
   },
   {
     key: "pesqueria",
     short: "Pesquería",
+    title: "Pesquería, N.L.",
     loc: "Pesquería, N.L.",
     status: "Próximamente",
     upcoming: true,
@@ -83,6 +74,7 @@ const DEV_DEFS: {
   {
     key: "santacatarina",
     short: "Santa Catarina",
+    title: "Santa Catarina, N.L.",
     loc: "Santa Catarina, N.L.",
     status: "Próximamente",
     upcoming: true,
@@ -90,18 +82,30 @@ const DEV_DEFS: {
   {
     key: "juarez",
     short: "Juárez",
-    loc: "Cd. Juárez, Chih.",
+    title: "Juárez, N.L.",
+    loc: "Juárez, N.L.",
     status: "Próximamente",
     upcoming: true,
   },
   {
     key: "suazua",
-    short: "Suázua",
-    loc: "Suázua, N.L.",
+    short: "Zuazua",
+    title: "Zuazua, N.L.",
+    loc: "Zuazua, N.L.",
     status: "Próximamente",
     upcoming: true,
   },
 ];
+
+// Fondo con degradado para cada desarrollo "Próximamente" (texto oscuro se
+// mantiene legible: todos arrancan casi en blanco y terminan en un tinte suave).
+const UPCOMING_GRADIENTS: Record<DevKey, string> = {
+  cienega: "#FAFAF9",
+  pesqueria: "linear-gradient(135deg, #FFFFFF 0%, #CDE9F4 100%)",
+  santacatarina: "linear-gradient(135deg, #FFFFFF 0%, #E2DDF3 100%)",
+  juarez: "linear-gradient(135deg, #FFFFFF 0%, #F0E3D2 100%)",
+  suazua: "linear-gradient(135deg, #FFFFFF 0%, #D2EEDD 100%)",
+};
 
 const LOC_DEFS: { key: LocKey; label: string }[] = [
   { key: "empresas", label: "Empresas" },
@@ -354,7 +358,7 @@ export default function Page() {
                     opacity: 0.6,
                   }}
                 >
-                  Desarrollos industriales · Noreste de México
+                  Desarrolladora Inmobiliaria · Noreste de México
                 </span>
               </div>
               <h1
@@ -382,10 +386,9 @@ export default function Page() {
                   animation: "fadeUp 0.9s ease 0.12s both",
                 }}
               >
-                En R.C. Desarrollos diseñamos, construimos y operamos parques
-                industriales Triple A. Infraestructura de clase mundial para la
-                nueva era de manufactura y almacenamiento en el Noreste de
-                México y Texas.
+                R.C. Desarrollos es una desarrolladora inmobiliaria que
+                controla el ciclo completo: identificamos la tierra, diseñamos,
+                construimos y operamos.
               </p>
               <div
                 style={{
@@ -402,25 +405,6 @@ export default function Page() {
                 <a href="#unidades" className="btn-outline" style={heroOutline}>
                   Unidades de negocio
                 </a>
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  gap: 40,
-                  marginTop: 56,
-                  flexWrap: "wrap",
-                  animation: "fadeUp 1.1s ease 0.24s both",
-                }}
-              >
-                <div>
-                  <div style={heroStatNum}>100,000 m²</div>
-                  <div style={heroStatLabel}>Área total del parque</div>
-                </div>
-                <div style={{ width: 1, background: SAND }} />
-                <div>
-                  <div style={heroStatNum}>4,500 KWa</div>
-                  <div style={heroStatLabel}>Disponibilidad energética</div>
-                </div>
               </div>
             </div>
             <div
@@ -511,61 +495,11 @@ export default function Page() {
         </div>
       </section>
 
-      {/* MARQUEE */}
-      <div
-        style={{
-          background: INK,
-          color: "#fff",
-          overflow: "hidden",
-          whiteSpace: "nowrap",
-          borderBottom: "1px solid rgba(255,255,255,0.1)",
-        }}
-      >
-        <div
-          style={{
-            display: "inline-flex",
-            animation: "marquee 30s linear infinite",
-            willChange: "transform",
-          }}
-        >
-          {[0, 1].map((rail) => (
-            <span
-              key={rail}
-              style={{ display: "inline-block", padding: "18px 0" }}
-              aria-hidden={rail === 1 ? true : undefined}
-            >
-              {MARQUEE_WORDS.map((w, i) => (
-                <span key={i}>
-                  <span
-                    style={{
-                      fontSize: 15,
-                      fontWeight: 500,
-                      letterSpacing: 0.5,
-                      textTransform: "uppercase",
-                    }}
-                  >
-                    {w}
-                  </span>
-                  <span
-                    style={{
-                      display: "inline-block",
-                      width: 9,
-                      height: 9,
-                      borderRadius: "50%",
-                      background: CYAN,
-                      margin: "0 28px",
-                      verticalAlign: "middle",
-                    }}
-                  />
-                </span>
-              ))}
-            </span>
-          ))}
-        </div>
-      </div>
-
       {/* SOBRE */}
-      <section id="sobre" style={{ background: "#fff", padding: "130px 0" }}>
+      <section
+        id="sobre"
+        style={{ background: INK, color: "#fff", padding: "130px 0" }}
+      >
         <div style={{ maxWidth: 1400, margin: "0 auto", padding: "0 40px" }}>
           <div
             style={{
@@ -588,7 +522,12 @@ export default function Page() {
                 Sobre R.C. Desarrollos
               </span>
               <div
-                style={{ marginTop: 22, width: 54, height: 2, background: INK }}
+                style={{
+                  marginTop: 22,
+                  width: 54,
+                  height: 2,
+                  background: CYAN,
+                }}
               />
             </div>
             <div data-reveal="true" data-delay="120">
@@ -605,16 +544,15 @@ export default function Page() {
                 Noreste de México.
               </h2>
               <p style={sobreParagraph}>
-                En R.C. Desarrollos no solo ofrecemos lugares: encarnamos una
-                visión sólida y un compromiso con la excelencia. Diseñamos,
-                construimos y operamos infraestructura industrial de clase
-                mundial, representando oportunidades para el crecimiento y el
-                éxito empresarial.
+                R.C. Desarrollos nace en Nuevo León con una convicción: el
+                crecimiento de la región se sostiene en la infraestructura que se
+                construye hoy. Conocemos el suelo, el mercado y a la gente que lo
+                hace posible, porque es donde vivimos y donde apostamos nuestro
+                capital.
               </p>
               <p style={{ ...sobreParagraph, marginTop: 20 }}>
-                Combinamos infraestructura, ubicación y asesoría para el éxito de
-                nuestros clientes, generando un impacto positivo en el desarrollo
-                económico y social de la región.
+                Desarrollamos con visión de largo plazo. Adquirimos la tierra, la
+                diseñamos, la construimos y la operamos.
               </p>
               <div
                 style={{
@@ -622,21 +560,17 @@ export default function Page() {
                   display: "flex",
                   gap: 48,
                   flexWrap: "wrap",
-                  borderTop: `1px solid ${SAND}`,
+                  borderTop: "1px solid rgba(255,255,255,0.15)",
                   paddingTop: 30,
                 }}
               >
                 <div>
-                  <div style={sobreMetaLabel}>Fundación</div>
-                  <div style={sobreMetaValue}>2024</div>
+                  <div style={sobreMetaLabel}>Años de experiencia</div>
+                  <div style={sobreMetaValue}>+30 años</div>
                 </div>
                 <div>
-                  <div style={sobreMetaLabel}>Giro</div>
-                  <div style={sobreMetaValue}>Parques Industriales</div>
-                </div>
-                <div>
-                  <div style={sobreMetaLabel}>Región</div>
-                  <div style={sobreMetaValue}>Noreste de México · Texas</div>
+                  <div style={sobreMetaLabel}>Construcción</div>
+                  <div style={sobreMetaValue}>+300,000 m²</div>
                 </div>
               </div>
             </div>
@@ -660,18 +594,6 @@ export default function Page() {
             >
               Unidades de negocio
             </span>
-            <h2
-              style={{
-                marginTop: 18,
-                fontSize: 48,
-                lineHeight: 1.05,
-                fontWeight: 500,
-                letterSpacing: -1.6,
-                textWrap: "balance",
-              }}
-            >
-              Tres formas de construir tu operación industrial.
-            </h2>
           </div>
 
           {/* unit cards */}
@@ -837,34 +759,36 @@ export default function Page() {
                             : "none",
                         }}
                       >
-                        <div
-                          style={{
-                            display: "flex",
-                            alignItems: "center",
-                            gap: 7,
-                            marginBottom: 14,
-                          }}
-                        >
-                          <span
+                        {d.status && (
+                          <div
                             style={{
-                              width: 7,
-                              height: 7,
-                              borderRadius: "50%",
-                              background: up ? "#F1F0DA" : CYAN,
-                            }}
-                          />
-                          <span
-                            style={{
-                              fontSize: 10.5,
-                              letterSpacing: 1,
-                              textTransform: "uppercase",
-                              color: up ? "rgba(255,255,255,0.6)" : CYAN,
-                              fontWeight: 500,
+                              display: "flex",
+                              alignItems: "center",
+                              gap: 7,
+                              marginBottom: 14,
                             }}
                           >
-                            {d.status}
-                          </span>
-                        </div>
+                            <span
+                              style={{
+                                width: 7,
+                                height: 7,
+                                borderRadius: "50%",
+                                background: up ? "#F1F0DA" : CYAN,
+                              }}
+                            />
+                            <span
+                              style={{
+                                fontSize: 10.5,
+                                letterSpacing: 1,
+                                textTransform: "uppercase",
+                                color: up ? "rgba(255,255,255,0.6)" : CYAN,
+                                fontWeight: 500,
+                              }}
+                            >
+                              {d.status}
+                            </span>
+                          </div>
+                        )}
                         <div
                           style={{
                             fontSize: 15,
@@ -873,20 +797,22 @@ export default function Page() {
                             letterSpacing: -0.3,
                           }}
                         >
-                          {d.short}
+                          {d.title}
                         </div>
-                        <div
-                          style={{
-                            marginTop: 5,
-                            fontSize: 12.5,
-                            color:
-                              on || up
-                                ? "rgba(255,255,255,0.55)"
-                                : "rgba(10,10,10,0.5)",
-                          }}
-                        >
-                          {d.loc}
-                        </div>
+                        {d.title !== d.loc && (
+                          <div
+                            style={{
+                              marginTop: 5,
+                              fontSize: 12.5,
+                              color:
+                                on || up
+                                  ? "rgba(255,255,255,0.55)"
+                                  : "rgba(10,10,10,0.5)",
+                            }}
+                          >
+                            {d.loc}
+                          </div>
+                        )}
                       </button>
                     );
                   })}
@@ -939,7 +865,7 @@ export default function Page() {
                             color: CYAN,
                           }}
                         >
-                          En desarrollo · Ciénega de Flores, N.L.
+                          Ciénega de Flores, N.L.
                         </span>
                         <div
                           style={{
@@ -1273,7 +1199,7 @@ export default function Page() {
                       borderRadius: 6,
                       padding: "80px 48px",
                       textAlign: "center",
-                      background: "#FAFAF9",
+                      background: UPCOMING_GRADIENTS[activeDev.key],
                     }}
                   >
                     <span
@@ -1369,17 +1295,14 @@ export default function Page() {
                     Construcción industrial a la medida.
                   </h3>
                   <p style={builtParagraph}>
-                    Especializados en el diseño y la construcción de
-                    instalaciones industriales adaptadas a las especificaciones
-                    precisas y los requerimientos de cada cliente.
+                    Especializados en el diseño y la construcción de inmuebles
+                    industriales ajustados a las especificaciones precisas y los
+                    requerimientos particulares de cada cliente.
                   </p>
                   <p style={{ ...builtParagraph, marginTop: 18 }}>
-                    Colaboramos de la mano con nuestra empresa hermana,{" "}
-                    <strong style={{ fontWeight: 500, color: INK }}>
-                      GP Construcción
-                    </strong>
-                    , para garantizar la ejecución impecable de cualquier
-                    proyecto, sin importar su complejidad.
+                    Ejecutamos con equipo propio, controlando directamente
+                    ingeniería, obra y supervisión, para garantizar la entrega de
+                    cualquier proyecto sin importar su complejidad.
                   </p>
                   <div
                     style={{
@@ -1931,25 +1854,11 @@ const heroOutline: React.CSSProperties = {
   borderRadius: 2,
 };
 
-const heroStatNum: React.CSSProperties = {
-  fontSize: 30,
-  fontWeight: 500,
-  letterSpacing: -1,
-  color: INK,
-};
-
-const heroStatLabel: React.CSSProperties = {
-  fontSize: 13,
-  color: "rgba(10,10,10,0.5)",
-  marginTop: 4,
-  letterSpacing: 0.3,
-};
-
 const sobreParagraph: React.CSSProperties = {
   marginTop: 30,
   fontSize: 19,
   lineHeight: 1.65,
-  color: "rgba(10,10,10,0.7)",
+  color: "rgba(255,255,255,0.72)",
   textWrap: "pretty",
 };
 
@@ -1957,7 +1866,7 @@ const sobreMetaLabel: React.CSSProperties = {
   fontSize: 13,
   letterSpacing: 1.5,
   textTransform: "uppercase",
-  color: "rgba(10,10,10,0.45)",
+  color: "rgba(255,255,255,0.5)",
 };
 
 const sobreMetaValue: React.CSSProperties = {

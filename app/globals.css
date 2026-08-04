@@ -98,12 +98,11 @@ body {
   box-shadow: 0 20px 40px rgba(10, 10, 10, 0.1);
 }
 
-.amenity {
-  transition: background 0.25s ease, color 0.25s ease;
+.amenity h4 {
+  transition: color 0.2s ease;
 }
-.amenity:hover {
-  background: #0a0a0a;
-  color: #fff;
+.amenity:hover h4 {
+  color: #4ebfe0;
 }
 
 .link-cyan {
