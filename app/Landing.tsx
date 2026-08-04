@@ -1433,13 +1433,13 @@ export default function Landing({ lang }: { lang: Lang }) {
                 </span>
               </a>
               <a
-                href="https://wa.me/528100000000"
+                href="https://wa.me/528131006363"
                 className="link-cyan"
                 style={contactLink}
               >
                 <span style={contactLabel}>{t.contact.phoneLabel}</span>
                 <span style={{ fontSize: 20, fontWeight: 500 }}>
-                  +52 81 0000 0000
+                  +52 81 3100 6363
                 </span>
               </a>
               <div
@@ -1648,6 +1648,24 @@ function LeadForm({
               className="field"
               style={fieldInput}
             />
+          </div>
+          <div style={fieldWrap}>
+            <label style={fieldLabel}>{form.unit}</label>
+            <select
+              name="unidad"
+              defaultValue=""
+              className="field"
+              style={{ ...fieldInput, cursor: "pointer" }}
+            >
+              <option value="" disabled>
+                {form.unitPh}
+              </option>
+              {form.unitOptions.map((o) => (
+                <option key={o} value={o}>
+                  {o}
+                </option>
+              ))}
+            </select>
           </div>
           <div
             style={{
