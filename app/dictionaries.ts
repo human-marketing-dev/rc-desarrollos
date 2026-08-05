@@ -147,19 +147,19 @@ const es = {
     lede: "Bodegas Triple A listas para renta inmediata dentro de nuestros parques.",
     items: [
       {
-        name: "Bodega 1",
+        name: "IBP 300",
         m2: "12,500 m²",
         status: "Disponible",
         desc: "Nave Triple A con andenes, oficinas y patio de maniobras.",
       },
       {
-        name: "Bodega 2",
+        name: "Libramiento",
         m2: "18,000 m²",
         status: "Disponible",
         desc: "Espacio modular con energía dedicada y opción de expansión.",
       },
       {
-        name: "Bodega 3",
+        name: "Cette Salinas",
         m2: "24,000 m²",
         status: "Disponible",
         desc: "Nave para manufactura de gran escala, lista para operar.",
@@ -355,19 +355,19 @@ const en: Content = {
     lede: "Triple A warehouses ready for immediate lease within our parks.",
     items: [
       {
-        name: "Warehouse 1",
+        name: "IBP 300",
         m2: "12,500 m²",
         status: "Available",
         desc: "Triple A building with docks, offices, and a maneuvering yard.",
       },
       {
-        name: "Warehouse 2",
+        name: "Libramiento",
         m2: "18,000 m²",
         status: "Available",
         desc: "Modular space with dedicated power and an expansion option.",
       },
       {
-        name: "Warehouse 3",
+        name: "Cette Salinas",
         m2: "24,000 m²",
         status: "Available",
         desc: "Large-scale manufacturing building, ready to operate.",

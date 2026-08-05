@@ -7,6 +7,7 @@ const ASSETS = {
   logoHeader: "/assets/logo-header.svg",
   logoSquare: "/assets/logo-square.svg",
   hero: "/hero-rc-desarrollos.webp",
+  heroVideo: "/hero.mp4",
   renderAerial: "/rc-parks-industrial.webp",
   renderEntrance: "/rc-desarrollos-build-to-suit.webp",
   map: "/mapa-rc-parks.webp",
@@ -239,130 +240,160 @@ export default function Landing({ lang }: { lang: Lang }) {
       </header>
 
       {/* HERO */}
-      <section id="top" style={{ background: "#fff" }}>
+      <section
+        id="top"
+        style={{
+          position: "relative",
+          minHeight: "90vh",
+          display: "flex",
+          alignItems: "flex-end",
+          overflow: "hidden",
+          background: INK,
+          color: "#fff",
+        }}
+      >
+        {/* Background media (dimmed). Swap the <img> for a <video> if available. */}
         <div
-          className="rc-wrap"
-          style={{ maxWidth: 1400, margin: "0 auto", padding: "0 40px" }}
+          style={{
+            position: "absolute",
+            inset: 0,
+            zIndex: 0,
+            overflow: "hidden",
+          }}
         >
-          <div
-            className="rc-hero"
+          {/* Decorative background video; the <h1> carries the meaning, so it
+              is aria-hidden. The poster covers load and the no-play fallback. */}
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster={ASSETS.hero}
+            aria-hidden="true"
             style={{
-              display: "grid",
-              gridTemplateColumns: "0.92fr 1.08fr",
-              gap: 0,
-              alignItems: "stretch",
-              minHeight: "calc(100vh - 92px)",
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              opacity: 0.62,
             }}
           >
-            <div
-              className="rc-hero-pad"
+            <source src={ASSETS.heroVideo} type="video/mp4" />
+          </video>
+        </div>
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            zIndex: 10,
+            background:
+              "linear-gradient(0deg, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.45) 45%, rgba(10,10,10,0.25) 100%)",
+          }}
+        />
+
+        <div
+          className="rc-wrap"
+          style={{
+            position: "relative",
+            zIndex: 20,
+            width: "100%",
+            maxWidth: 1400,
+            margin: "0 auto",
+            padding: "128px 40px 80px",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 13,
+              marginBottom: 24,
+              animation: "fadeUp 0.7s ease both",
+            }}
+          >
+            <span style={{ width: 34, height: 1, background: CYAN }} />
+            <span
               style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                padding: "70px 64px 70px 0",
+                fontSize: 12.5,
+                letterSpacing: 3,
+                textTransform: "uppercase",
+                color: "rgba(255,255,255,0.72)",
+                fontWeight: 500,
               }}
             >
-              <div
+              {t.hero.eyebrow}
+            </span>
+          </div>
+
+          <h1
+            className="rc-h1"
+            style={{
+              fontSize: 74,
+              lineHeight: 0.97,
+              fontWeight: 500,
+              letterSpacing: -3,
+              maxWidth: 1050,
+              textWrap: "balance",
+              animation: "fadeUp 0.8s ease 0.05s both",
+            }}
+          >
+            {t.hero.titleBefore}
+            <span style={{ color: CYAN }}>{t.hero.titleHighlight}</span>
+            {t.hero.titleAfter}
+          </h1>
+
+          <div
+            style={{
+              marginTop: 36,
+              display: "flex",
+              flexWrap: "wrap",
+              alignItems: "flex-end",
+              justifyContent: "space-between",
+              gap: 32,
+              animation: "fadeUp 0.9s ease 0.12s both",
+            }}
+          >
+            <p
+              style={{
+                maxWidth: 560,
+                fontSize: 20,
+                lineHeight: 1.55,
+                color: "rgba(255,255,255,0.85)",
+                textWrap: "pretty",
+              }}
+            >
+              {t.hero.desc}
+            </p>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 14 }}>
+              <a
+                href="#contacto"
+                className="btn-cyan"
                 style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 13,
-                  marginBottom: 30,
-                  animation: "fadeUp 0.7s ease both",
-                }}
-              >
-                <span style={{ width: 34, height: 1, background: CYAN }} />
-                <span
-                  style={{
-                    fontSize: 12.5,
-                    letterSpacing: 3,
-                    textTransform: "uppercase",
-                    color: INK,
-                    fontWeight: 500,
-                    opacity: 0.6,
-                  }}
-                >
-                  {t.hero.eyebrow}
-                </span>
-              </div>
-              <h1
-                className="rc-h1"
-                style={{
-                  fontSize: 74,
-                  lineHeight: 0.97,
-                  fontWeight: 500,
-                  letterSpacing: -3,
+                  background: CYAN,
                   color: INK,
-                  textWrap: "balance",
-                  animation: "fadeUp 0.8s ease 0.05s both",
+                  textDecoration: "none",
+                  fontSize: 16,
+                  fontWeight: 500,
+                  padding: "17px 34px",
+                  borderRadius: 2,
                 }}
               >
-                {t.hero.titleBefore}
-                <span style={{ color: CYAN }}>{t.hero.titleHighlight}</span>
-                {t.hero.titleAfter}
-              </h1>
-              <p
+                {t.hero.ctaPrimary}
+              </a>
+              <a
+                href="#unidades"
+                className="btn-ghost"
                 style={{
-                  marginTop: 30,
-                  fontSize: 20,
-                  lineHeight: 1.55,
-                  color: "rgba(10,10,10,0.66)",
-                  maxWidth: 520,
-                  textWrap: "pretty",
-                  animation: "fadeUp 0.9s ease 0.12s both",
+                  border: "1px solid rgba(255,255,255,0.4)",
+                  color: "#fff",
+                  textDecoration: "none",
+                  fontSize: 16,
+                  padding: "17px 34px",
+                  borderRadius: 2,
                 }}
               >
-                {t.hero.desc}
-              </p>
-              <div
-                style={{
-                  display: "flex",
-                  gap: 14,
-                  flexWrap: "wrap",
-                  marginTop: 40,
-                  animation: "fadeUp 1s ease 0.18s both",
-                }}
-              >
-                <a href="#contacto" className="btn-dark" style={heroPrimary}>
-                  {t.hero.ctaPrimary}
-                </a>
-                <a href="#unidades" className="btn-outline" style={heroOutline}>
-                  {t.hero.ctaSecondary}
-                </a>
-              </div>
-            </div>
-            <div
-              className="rc-hero-media"
-              style={{
-                position: "relative",
-                overflow: "hidden",
-                borderRadius: 4,
-                margin: "32px 0",
-                animation: "fadeUp 0.9s ease 0.1s both",
-              }}
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={ASSETS.hero}
-                alt={t.parks.cienega.name}
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  animation: "kenburns 16s ease-out forwards",
-                }}
-              />
-              <div
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  background:
-                    "linear-gradient(120deg,rgba(10,10,10,0.18),transparent 50%)",
-                }}
-              />
+                {t.hero.ctaSecondary}
+              </a>
             </div>
           </div>
         </div>
@@ -1736,25 +1767,6 @@ const navLink: React.CSSProperties = {
   color: INK,
   fontSize: 14.5,
   opacity: 0.72,
-};
-
-const heroPrimary: React.CSSProperties = {
-  background: INK,
-  color: "#fff",
-  textDecoration: "none",
-  fontSize: 16,
-  fontWeight: 500,
-  padding: "17px 34px",
-  borderRadius: 2,
-};
-
-const heroOutline: React.CSSProperties = {
-  border: "1px solid rgba(10,10,10,0.25)",
-  color: INK,
-  textDecoration: "none",
-  fontSize: 16,
-  padding: "17px 34px",
-  borderRadius: 2,
 };
 
 const sobreParagraph: React.CSSProperties = {
