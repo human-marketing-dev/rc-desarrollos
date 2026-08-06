@@ -10,7 +10,6 @@ const ASSETS = {
   heroVideo: "/hero.mp4",
   renderAerial: "/rc-parks-industrial.webp",
   renderEntrance: "/rc-desarrollos-build-to-suit.webp",
-  map: "/mapa-rc-parks.webp",
 };
 
 const CYAN = "#4EBFE0";
@@ -979,7 +978,7 @@ export default function Landing({ lang }: { lang: Lang }) {
                       >
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
-                          src={ASSETS.map}
+                          src={t.parks.mapImg}
                           alt={t.parks.locationLabel}
                           style={{ width: "100%", display: "block" }}
                         />

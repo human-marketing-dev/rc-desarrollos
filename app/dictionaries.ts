@@ -52,6 +52,7 @@ const es = {
     title: "Parques industriales Triple A",
     lede: "Selecciona un desarrollo para conocer sus detalles. Nuevos parques en camino en todo el Noreste.",
     comingSoon: "Próximamente",
+    mapImg: "/mapa-rc-parks-es.webp",
     cienega: {
       loc: "Ciénega de Flores, N.L.",
       name: "RC Parks Ciénega de Flores",
@@ -260,6 +261,7 @@ const en: Content = {
     title: "Triple A industrial parks",
     lede: "Select a development to see its details. New parks on the way across the Northeast.",
     comingSoon: "Coming soon",
+    mapImg: "/mapa-rc-parks.webp",
     cienega: {
       loc: "Ciénega de Flores, N.L.",
       name: "RC Parks Ciénega de Flores",
